@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app       # Name of the application in Argo CD
+  namespace: argocd  # Argo CD's namespace
+spec:
+  project: default    # The project under which the app is managed
+  source:
+    repoURL: git@github.com:expertep/gitops.git
+    targetRevision: HEAD       # Branch name (e.g., main)
+    path: manifests             # Path to Kubernetes manifests in the repo
+  destination:
+    server: https://kubernetes.default.svc  # URL for the cluster
+    namespace: my-namespace                  # Namespace where the app will be deployed
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
