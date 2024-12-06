@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
   labels:
     argocd.argoproj.io/secret-type: repo-creds
+
 stringData:
   url: git@github.com:expertep/gitops.git
   type: helm
